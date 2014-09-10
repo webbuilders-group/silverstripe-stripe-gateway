@@ -1,0 +1,26 @@
+{
+    "name": "webbuilders-group/silverstripe-stripe-gateway",
+    "description": "Payment gateway for the Stripe payment service",
+    "type": "silverstripe-module",
+    "keywords": ["silverstripe", "stripe", "payment", "ecommerce", "gateway"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Ed Chipman",
+            "homepage": "http://webbuildersgroup.com",
+            "role": "Developer"
+        }
+    ],
+
+    "require":
+    {
+        "silverstripe/framework": "3.1.*",
+        "silverstripe/payment": "1.0.*",
+        "stripe/stripe-php": "1.*",
+        "composer/installers": "*"
+    },
+
+    "support": {
+        "issues": "https://github.com/webbuilders-group/silverstripe-stripe-gateway/issues"
+    }
+}

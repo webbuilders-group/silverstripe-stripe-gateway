@@ -1,0 +1,13 @@
+en:
+    StripeGateway:
+        NO_API_KEY: "No api key configured, you must configure StripeGateway.api_secret for live and StripeGateway.test_api_secret for dev"
+        FAIL_CVC: "The credit card's security code (cvc) is invalid"
+        FAIL_ADDRESS: "Your bank declined the charge based on your address information, please verify the information and try again"
+        FAIL_ZIP_CODE: "Your bank declined the charge based on your postal code/zip code, please verify it and try again"
+        PAYMENT_DESCRIPTION: "{sitetitle} Store Sale"
+    StripeGatewayProcessor:
+        ADDRESS: "Address"
+        CITY: "City"
+        STATE_PROVINCE: "State/Province"
+        ZIP_POSTAL_CODE: "ZIP/Postal Code"
+        COUNTRY: "Country"

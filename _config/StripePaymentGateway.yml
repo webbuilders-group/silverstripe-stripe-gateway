@@ -1,0 +1,7 @@
+PaymentFactory:
+    StripePaymentGateway: 
+        title: "Pay with Stripe"
+        processor: StripeGatewayProcessor
+        gateway_classes: 
+            live: StripeGateway
+            dev: StripeGateway
