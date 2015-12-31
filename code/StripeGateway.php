@@ -1,5 +1,6 @@
 <?php
-class StripeGateway extends PaymentGateway_MerchantHosted {
+class StripeGateway extends PaymentGateway_MerchantHosted
+{
     /**
      * Supported currencies for this gateway
      * @see PaymentGateway::getSupportedCurrencies()
@@ -176,16 +177,17 @@ class StripeGateway extends PaymentGateway_MerchantHosted {
      * @param {array} $data Data to be passed to the gateway
      * @return {PaymentGateway_Result} Payment result object
      */
-    public function process($data) {
+    public function process($data)
+    {
         $api_key='';
-        if(PaymentGateway::get_environment()=='dev') {
+        if (PaymentGateway::get_environment()=='dev') {
             $api_key=Config::inst()->get('StripeGateway', 'test_api_secret');
-        }else {
+        } else {
             $api_key=Config::inst()->get('StripeGateway', 'api_secret');
         }
         
         
-        if(empty($api_key)) {
+        if (empty($api_key)) {
             return new PaymentGateway_Failure(403, _t('StripeGateway.NO_API_KEY', '_No api key configured, you must configure StripeGateway.api_secret for live and StripeGateway.test_api_secret for dev'));
         }
         
@@ -215,32 +217,31 @@ class StripeGateway extends PaymentGateway_MerchantHosted {
                                                 'description'=>_t('StripeGateway.PAYMENT_DESCRIPTION', '_{sitetitle} Store Sale', array('sitetitle'=>(class_exists('SiteConfig') ? SiteConfig::get()->first()->Title:'SilverStripe')))
                                             ));
             
-            if($response->paid) {
+            if ($response->paid) {
                 return new PaymentGateway_Success($status);
-            }else if($response->cvc_check=='fail' || $response->address_line1_check=='fail' || $response->address_zip_check=='fail') {
+            } elseif ($response->cvc_check=='fail' || $response->address_line1_check=='fail' || $response->address_zip_check=='fail') {
                 $errors=array();
                 
-                if($response->cvc_check=='fail') {
+                if ($response->cvc_check=='fail') {
                     $errors[]=_t('StripeGateway.FAIL_CVC', '_The credit card\'s security code (cvc) is invalid');
                 }
                 
-                if($response->address_line1_check=='fail') {
+                if ($response->address_line1_check=='fail') {
                     $errors[]=_t('StripeGateway.FAIL_ADDRESS', '_Your bank declined the charge based on your address information, please verify the information and try again');
                 }
                 
-                if($response->address_zip_check=='fail') {
+                if ($response->address_zip_check=='fail') {
                     $errors[]=_t('StripeGateway.FAIL_ZIP_CODE', '_Your bank declined the charge based on your postal code/zip code, please verify it and try again');
                 }
                 
                 return new PaymentGateway_Failure(null, $errors);
-            }else {
+            } else {
                 return new PaymentGateway_Incomplete();
             }
-        }catch(Stripe_Error $e) {
+        } catch (Stripe_Error $e) {
             return new PaymentGateway_Failure(new SS_HTTPResponse('', $e->getHttpStatus()), array($e->getCode()=>$e->getMessage()));
         }
         
         return new PaymentGateway_Failure();
     }
 }
-?>
