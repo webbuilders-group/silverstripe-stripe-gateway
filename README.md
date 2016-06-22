@@ -6,7 +6,7 @@ Stripe payment gateway for the SilverStripe payment module
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe Framework 3.1.x
+* SilverStripe Framework 3.1+
 * [SilverStripe Payment 1.0.x](https://github.com/silverstripe-labs/silverstripe-payment/tree/1.0)
 
 
