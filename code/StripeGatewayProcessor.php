@@ -1,10 +1,12 @@
 <?php
-class StripeGatewayProcessor extends PaymentProcessor_MerchantHosted {
+class StripeGatewayProcessor extends PaymentProcessor_MerchantHosted
+{
     /**
      * Get the processor's form fields. Custom controllers use this function to add the form fields specific to this gateway.
      * @return {FieldList}
      */
-    public function getFormFields() {
+    public function getFormFields()
+    {
         $fields=parent::getFormFields();
         
         
@@ -23,7 +25,8 @@ class StripeGatewayProcessor extends PaymentProcessor_MerchantHosted {
      * Get the form requirements
      * @return {RequiredFields}
      */
-    public function getFormRequirements() {
+    public function getFormRequirements()
+    {
         $required=parent::getFormRequirements();
         
         
@@ -38,4 +41,3 @@ class StripeGatewayProcessor extends PaymentProcessor_MerchantHosted {
         return $required;
     }
 }
-?>
